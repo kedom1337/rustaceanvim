@@ -18,9 +18,9 @@ function M.handler(_, result, ctx, _)
   -- as soon as rust-analyzer has fully initialized.
   if type(vim.lsp.inlay_hint) == 'table' then
     for _, bufnr in ipairs(vim.lsp.get_buffers_by_client_id(ctx.client_id)) do
-      if vim.lsp.inlay_hint.is_enabled { bufnr = bufnr } then
-        vim.lsp.inlay_hint.enable(false, { bufnr = bufnr })
-        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      if vim.lsp.inlay_hint.is_enabled(bufnr) then
+        vim.lsp.inlay_hint.enable(bufnr, false)
+        vim.lsp.inlay_hint.enable(bufnr, true)
       end
     end
   end
